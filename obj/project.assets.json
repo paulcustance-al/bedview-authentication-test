@@ -810,30 +810,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\PaulCustance\\.nuget\\packages\\": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "C:\\Users\\msmith\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\PaulCustance\\Code\\temp\\test-windows-authentication\\test-windows-authentication.csproj",
+      "projectUniqueName": "C:\\Users\\msmith\\code\\test-windows-authentication\\test-windows-authentication.csproj",
       "projectName": "test-windows-authentication",
-      "projectPath": "C:\\Users\\PaulCustance\\Code\\temp\\test-windows-authentication\\test-windows-authentication.csproj",
-      "packagesPath": "C:\\Users\\PaulCustance\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\PaulCustance\\Code\\temp\\test-windows-authentication\\obj\\",
+      "projectPath": "C:\\Users\\msmith\\code\\test-windows-authentication\\test-windows-authentication.csproj",
+      "packagesPath": "C:\\Users\\msmith\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\msmith\\code\\test-windows-authentication\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-      ],
       "configFilePaths": [
-        "C:\\Users\\PaulCustance\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\msmith\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp3.1"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -877,7 +871,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.301\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.302\\RuntimeIdentifierGraph.json"
       }
     }
   }

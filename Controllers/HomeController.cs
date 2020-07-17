@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Authorization;
 
 namespace test_wa.Controllers
 {
@@ -12,6 +13,7 @@ namespace test_wa.Controllers
             _logger = logger;
         }   
 
+        [Authorize]
         public IActionResult Index()
         {
             ViewData["authenticated"] = User.Identity.IsAuthenticated;
