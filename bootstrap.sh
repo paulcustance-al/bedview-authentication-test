@@ -21,4 +21,4 @@ cat ./temp_krb5 > /etc/krb5.conf
 echo Twez23fa! | kinit msmith@PCUSTANCEGMAIL.ONMICROSOFT.COM
 echo Twez23fa! | realm join --verbose PCUSTANCEGMAIL.ONMICROSOFT.COM -U 'msmith@PCUSTANCEGMAIL.ONMICROSOFT.COM' --install=/
 
-while true; do sleep 1; done
+exec "$@"
