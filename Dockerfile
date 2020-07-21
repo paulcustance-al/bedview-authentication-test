@@ -14,6 +14,7 @@ FROM mcr.microsoft.com/dotnet/core/aspnet:3.1.4-bionic AS base
 WORKDIR /app
 COPY --from=build-env /app/out .
 COPY ./ubuntu-server-2.HTTP.keytab /app/ubuntu-server-2.HTTP.keytab
+COPY ./krb5.conf /etc/krb5.conf
 RUN export DEBIAN_FRONTEND=noninteractive && \
     apt-get update && \
     apt-get install krb5-user samba sssd \
@@ -21,4 +22,4 @@ RUN export DEBIAN_FRONTEND=noninteractive && \
                     libpam-sss ntp ntpdate realmd adcli -y
 COPY ./bootstrap.sh ./bootstrap.sh
 RUN chmod +x ./bootstrap.sh
-ENTRYPOINT ["./bootstrap.sh", "dotnet", "test-windows-authentication.dll"]
+ENTRYPOINT ["dotnet", "test-windows-authentication.dll"]
