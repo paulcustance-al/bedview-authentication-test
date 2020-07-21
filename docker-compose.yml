@@ -6,4 +6,4 @@ services:
       - "80:80"
     container_name: "ubuntu-container"
     environment: 
-      KRB5_KTNAME=/app/ubuntu-server-2.HTTP.keytab
+      - KRB5_KTNAME=/app/ubuntu-server-2.HTTP.keytab
