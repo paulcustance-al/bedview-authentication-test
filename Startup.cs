@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.AspNetCore.Server.HttpSys;
 
 namespace test_wa
 {
@@ -24,9 +25,7 @@ namespace test_wa
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services
-                .AddAuthentication(NegotiateDefaults.AuthenticationScheme)
-                .AddNegotiate();
+            services.AddAuthentication(HttpSysDefaults.AuthenticationScheme);
 
             services.AddControllersWithViews();
         }
