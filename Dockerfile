@@ -12,12 +12,12 @@ RUN dotnet publish -c Release -o out
 # Build runtime image
 FROM mcr.microsoft.com/dotnet/core/aspnet:3.1.4-bionic AS base
 WORKDIR /app
-COPY --from=build-env /app/out .
-COPY ./ubuntu-server-2.HTTP.keytab /app/ubuntu-server-2.HTTP.keytab
-COPY ./krb5.conf /etc/krb5.conf
 RUN export DEBIAN_FRONTEND=noninteractive && \
     apt-get update && \
     apt-get install krb5-user samba sssd \
                     sssd-tools libnss-sss \
                     libpam-sss ntp ntpdate realmd adcli -y
+COPY --from=build-env /app/out .
+COPY ./ubuntu-server-2.HTTP.keytab /app/ubuntu-server-2.HTTP.keytab
+COPY ./krb5.conf /etc/krb5.conf
 ENTRYPOINT ["dotnet", "test-windows-authentication.dll"]
