@@ -20,6 +20,4 @@ RUN export DEBIAN_FRONTEND=noninteractive && \
     apt-get install krb5-user samba sssd \
                     sssd-tools libnss-sss \
                     libpam-sss ntp ntpdate realmd adcli -y
-COPY ./bootstrap.sh ./bootstrap.sh
-RUN chmod +x ./bootstrap.sh
 ENTRYPOINT ["dotnet", "test-windows-authentication.dll"]
