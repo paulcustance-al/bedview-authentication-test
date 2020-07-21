@@ -18,7 +18,9 @@ cat /etc/krb5.conf | tail -n +3 >> ./temp_krb5
 cat ./temp_krb5 > /etc/krb5.conf
 
 # Join the container to the domain
-echo Twez23fa! | kinit msmith@PCUSTANCEGMAIL.ONMICROSOFT.COM
-echo Twez23fa! | realm join --verbose PCUSTANCEGMAIL.ONMICROSOFT.COM -U 'msmith@PCUSTANCEGMAIL.ONMICROSOFT.COM' --install=/
+#echo Twez23fa! | kinit msmith@PCUSTANCEGMAIL.ONMICROSOFT.COM
+#echo Twez23fa! | realm join --verbose PCUSTANCEGMAIL.ONMICROSOFT.COM -U 'msmith@PCUSTANCEGMAIL.ONMICROSOFT.COM' --install=/
+
+kinit -k -t ubuntu-server-2.HTTP.keytab HTTP/ubuntu-server-2.pcustancegmail.onmicrosoft.com@PCUSTANCEGMAIL.ONMICROSOFT.COM -V
 
 exec "$@"

@@ -13,6 +13,7 @@ RUN dotnet publish -c Release -o out
 FROM mcr.microsoft.com/dotnet/core/aspnet:3.1.4-bionic AS base
 WORKDIR /app
 COPY --from=build-env /app/out .
+COPY ./ubuntu-server-2.HTTP.keytab /app/ubuntu-server-2.HTTP.keytab
 RUN export DEBIAN_FRONTEND=noninteractive && \
     apt-get update && \
     apt-get install krb5-user samba sssd \
