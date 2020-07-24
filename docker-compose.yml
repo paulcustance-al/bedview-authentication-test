@@ -1,0 +1,12 @@
+version: '3.4'
+
+services:
+
+  bedviewmock:
+    container_name: bedviewmock
+    image: ${DOCKER_REGISTRY-}bedviewmock
+    build:
+      context: .
+      dockerfile: src/BedViewMock/Dockerfile
+    ports: 
+      - "35001:80"
