@@ -5,8 +5,11 @@ namespace AuthenticationService.Models
 {
     public interface IAuthContainerModel
     {
-        public string SecretKey { get; }
-        public string SecurityAlgorithm { get; }
+        public string SigningKey { get; }
+        public string SigningAlgorithm { get; }
+        public string EncryptionKey { get; }
+        public string EncryptionAlgorithm { get; }
+        public string EncryptionEncoding { get; }
         public int ExpiryInMinutes { get; }
         public string Issuer { get; }
         public string Audience { get; }

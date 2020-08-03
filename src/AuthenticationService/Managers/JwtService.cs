@@ -27,7 +27,8 @@ namespace AuthenticationService.Managers
                 Expires = DateTime.UtcNow.AddMinutes(Convert.ToInt32(model.ExpiryInMinutes)),
                 Audience = _authModel.Audience,
                 Issuer = _authModel.Issuer,
-                SigningCredentials = new SigningCredentials(GetSymmetricSecurityKey(), model.SecurityAlgorithm)
+                SigningCredentials = new SigningCredentials(GetSymmetricSiginingKey(), model.SigningAlgorithm),
+                EncryptingCredentials = new EncryptingCredentials(GetSymmetricEncryptionKey(), model.EncryptionAlgorithm, model.EncryptionEncoding)
             };
 
             var jwtSecurityTokenHandler = new JwtSecurityTokenHandler();
@@ -37,9 +38,15 @@ namespace AuthenticationService.Managers
             return token;
         }
 
-        private SecurityKey GetSymmetricSecurityKey() 
+        private SecurityKey GetSymmetricSiginingKey() 
         {
-            var symmetricKey = Encoding.ASCII.GetBytes(_authModel.SecretKey);
+            var symmetricKey = Encoding.ASCII.GetBytes(_authModel.SigningKey);
+            return new SymmetricSecurityKey(symmetricKey);
+        }
+
+        private SymmetricSecurityKey GetSymmetricEncryptionKey()
+        {
+            var symmetricKey = Encoding.ASCII.GetBytes(_authModel.EncryptionKey);
             return new SymmetricSecurityKey(symmetricKey);
         }
     }

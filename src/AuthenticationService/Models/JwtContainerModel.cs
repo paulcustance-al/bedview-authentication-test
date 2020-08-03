@@ -15,7 +15,8 @@ namespace AuthenticationService.Models
         {
             _authenticationConfiguration = authenticationConfiguration.Value;
 
-            SecretKey = _authenticationConfiguration.SecretKey;
+            SigningKey = _authenticationConfiguration.SigningKey;
+            EncryptionKey = _authenticationConfiguration.EncryptionKey;
             Issuer = _authenticationConfiguration.Issuer;
             Audience = _authenticationConfiguration.Audience;
             ExpiryInMinutes = _authenticationConfiguration.ExpiryInMinutes;
@@ -23,11 +24,15 @@ namespace AuthenticationService.Models
         }
 
         public int ExpiryInMinutes { get; } = 60;
-        public string SecurityAlgorithm { get; set; } = SecurityAlgorithms.HmacSha256Signature;
-        public string SecretKey { get; }
+        public string SigningAlgorithm { get; set; } = SecurityAlgorithms.HmacSha256Signature;
+        public string SigningKey { get; }
+        public string EncryptionAlgorithm { get; set; } = SecurityAlgorithms.Aes128KW;
+        public string EncryptionEncoding { get; set; } = SecurityAlgorithms.Aes128CbcHmacSha256;
+        public string EncryptionKey { get; }
         public string Issuer { get; }
         public string Audience { get; }
         public List<Claim> Claims { get; }
+
 
         public void AddClaim(Claim claim)
         {
