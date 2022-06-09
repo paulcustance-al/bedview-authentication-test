@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Options;
 
 namespace BedViewMock
 {
@@ -28,7 +29,9 @@ namespace BedViewMock
             services.AddControllersWithViews();
             services.AddSingleton<IAuthService, JwtService>();
             services.AddSingleton<IAuthContainerModel, JwtContainerModel>();
-            services.Configure<AuthenticationConfiguration>(Configuration.GetSection("Jwt"));
+            services
+                .Configure<AuthenticationConfiguration>(Configuration.GetSection("Jwt"))
+                .AddSingleton(resolver => resolver.GetRequiredService<IOptions<AuthenticationConfiguration>>().Value);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -6,8 +6,6 @@ using AuthenticationService.Managers;
 using Microsoft.Extensions.Configuration;
 using AuthenticationService.Models;
 using System.Security.Claims;
-using Microsoft.AspNetCore.Authorization;
-
 namespace BedViewMock.Controllers
 {
     public class HomeController : Controller
@@ -31,7 +29,7 @@ namespace BedViewMock.Controllers
 
         public IActionResult Index()
         {
-            _authContainerModel.AddClaim(new Claim(ClaimTypes.NameIdentifier, "20004135"));
+            _authContainerModel.AddClaim(new Claim(ClaimTypes.NameIdentifier, "PHT_MASTER\\stevenk1"));
             var token = _authService.GenerateToken(_authContainerModel);
 
             ViewData["token"] = token;

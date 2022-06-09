@@ -12,5 +12,4 @@ services:
       - "35001:80"
     environment:
         Jwt__SigningKey: WmZq4t7w!z%C*F)J@NcRfUjXn2r5u8x/
-        Jwt__EncryptionKey: z%C*F-JaNcRfUjXn
-                        
+        Jwt__EncryptionKey: z%C*F-JaNcRfUjXn                        

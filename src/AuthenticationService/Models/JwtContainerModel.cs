@@ -1,7 +1,5 @@
 ﻿using AuthenticationService.Configuration;
-using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
-using System;
 using System.Collections.Generic;
 using System.Security.Claims;
 
@@ -11,9 +9,9 @@ namespace AuthenticationService.Models
     {
         private readonly AuthenticationConfiguration _authenticationConfiguration;
 
-        public JwtContainerModel(IOptions<AuthenticationConfiguration> authenticationConfiguration)
+        public JwtContainerModel(AuthenticationConfiguration authenticationConfiguration)
         {
-            _authenticationConfiguration = authenticationConfiguration.Value;
+            _authenticationConfiguration = authenticationConfiguration;
 
             SigningKey = _authenticationConfiguration.SigningKey;
             EncryptionKey = _authenticationConfiguration.EncryptionKey;
@@ -33,10 +31,14 @@ namespace AuthenticationService.Models
         public string Audience { get; }
         public List<Claim> Claims { get; }
 
-
         public void AddClaim(Claim claim)
         {
             Claims.Add(claim);
+        }
+
+        public void AddClaim(string type, string value)
+        {
+            Claims.Add(new Claim(type, value));
         }
     }
 }

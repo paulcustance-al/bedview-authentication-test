@@ -7,5 +7,27 @@
 
 <div class="text-center">
     <h1 class="display-4">BedView Mock</h1>
-    <iframe id="output-frame-id" src="http://localhost:8081/patient/488edeAB-5e8F-4e50-9137-24e377cf9436/instance/b21ddc81-0c04-439f-971f-ee6a497b870b/edit?jwt=@token" width="800" height="800"></iframe>
+    <iframe id="output-frame-id" src="http://localhost:8081/patient/488edeAB-5e8F-4e50-9137-24e377cf9436/instance/8b0719b6-2bd2-4b99-a190-b7768a683a6f/edit?jwt=@token" width="800" height="800"></iframe>
 </div>
+
+<script type="text/javascript">
+
+    var eventMethod = window.addEventListener
+        ? "addEventListener"
+        : "attachEvent";
+
+    var eventHandler = window[eventMethod];
+
+    var messageEvent = eventMethod === "attachEvent"
+        ? "onmessage"
+        : "message";
+
+    eventHandler(messageEvent, function (e) {
+
+        // if (e.origin !== 'http://the-trusted-iframe-origin.com') return;
+
+        if (e.data === "form-submitted" || e.message === "form-submitted")
+            console.log(e);
+    });
+
+</script>

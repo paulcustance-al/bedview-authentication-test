@@ -34,8 +34,13 @@ namespace AuthenticationService.Managers
             var jwtSecurityTokenHandler = new JwtSecurityTokenHandler();
             var securityToken = jwtSecurityTokenHandler.CreateToken(securityTokenDescriptor);
             var token = jwtSecurityTokenHandler.WriteToken(securityToken);
-
+            
             return token;
+        }
+
+        public ClaimsPrincipal DecryptToken(IAuthContainerModel model, string token)
+        {
+           return DecryptToken(token);
         }
 
         private SecurityKey GetSymmetricSiginingKey() 
@@ -48,6 +53,21 @@ namespace AuthenticationService.Managers
         {
             var symmetricKey = Encoding.ASCII.GetBytes(_authModel.EncryptionKey);
             return new SymmetricSecurityKey(symmetricKey);
+        }
+
+        protected ClaimsPrincipal DecryptToken(string token)
+        {
+            var handler = new JwtSecurityTokenHandler();
+            var validations = new TokenValidationParameters
+            {
+                ValidateIssuerSigningKey = true,
+                IssuerSigningKey = GetSymmetricSiginingKey(),
+                ValidateIssuer = false,
+                ValidateAudience = false,
+                TokenDecryptionKey = GetSymmetricEncryptionKey()
+            };
+
+            return handler.ValidateToken(token, validations, out var _);
         }
     }
 }
